@@ -421,7 +421,7 @@
   "Message_Ignored": "Message ignored. Tap to display it.",
   "Message_removed": "message removed",
   "Message_Reported": "Message reported",
-  "Message_roomname": "Message {{roomName}}",
+  "Message_roomname": "{{roomName}}",
   "Message_starred": "Message starred",
   "Message_unstarred": "Message unstarred",
   "messages": "messages",

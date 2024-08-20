@@ -16,18 +16,72 @@ export default StyleSheet.create({
 	contentContainer: {
 		flex: 1
 	},
-	messageContent: {
-		flex: 1,
-		marginLeft: 46
+	// messageContent: {
+	// 	flex: 1,
+	// 	marginLeft: 46
+	// },
+	messageContentWithHeaderMe: {
+		width:'auto',
+		marginTop: 5,
+		marginBottom: 10,
+		marginRight: 30,
+		marginLeft: 'auto',
+		borderRadius: 5, // 角に丸みをつける
+		backgroundColor: 'aqua',//背景色	
+		borderWidth: 1,// 枠線	
+		padding:5
 	},
-	messageContentWithHeader: {
-		marginLeft: 10
+	messageContentWithHeaderOther: {
+		width:'auto',
+		marginTop: 5,
+		marginBottom: 10,
+		marginRight: 'auto',
+		marginLeft: 30,
+		borderRadius: 5, // 角に丸みをつける
+		backgroundColor: '#EEEEEE',//背景色	
+		borderWidth: 1,// 枠線
+		padding:5
 	},
+	hatsugenShaMe:{
+		marginRight: 30,
+		marginLeft: 'auto',
+		
+	},
+	hatsugenShaOther:{
+		marginRight: 'auto',
+		marginLeft: 30,
+	},
+
+
+
+	// 吹き出し
+	leftArrow: {
+		position: 'absolute',
+		backgroundColor: '#dedede',
+		width: 20,
+		height: 20,
+		left: -10,
+		bottom: -50,
+		borderBottomRightRadius: 16,
+	},
+	leftArrowOverlap: {
+		position: 'absolute',
+		backgroundColor: '#fff',
+		width: 26,
+		height: 20,
+		left: -26,
+		bottom: 0,
+		borderBottomRightRadius: 10,
+	},
+
+	
+
+	
 	messageContentWithError: {
 		marginLeft: 0
 	},
 	flex: {
-		flexDirection: 'row'
+		flexDirection: 'column'
 	},
 	temp: { opacity: 0.3 },
 	marginTop: {
