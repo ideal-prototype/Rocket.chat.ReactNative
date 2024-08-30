@@ -85,4 +85,16 @@
             <data android:mimeType="*/*" />
         </intent>
     </queries>
+
+    <meta-data
+        android:name="com.bugsnag.android.VERSION_CODE"
+        android:value="999999999" />
+    
+    <meta-data
+        android:name="com.bugsnag.android.VERSION_NAME"
+        android:value="4.51.0" />
+
+    <meta-data
+        android:name="com.bugsnag.android.BUILD_UUID"
+        android:value="6a7232d4-70fd-4025-821a-da8a424524e8" />
 </manifest>

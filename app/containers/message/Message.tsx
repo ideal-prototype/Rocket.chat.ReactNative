@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from 'react';
-import { View } from 'react-native';
+import { View,Text } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 
 import MessageContext from './Context';
@@ -117,12 +117,21 @@ const Message = React.memo((props: IMessage) => {
 						msg={props.msg}
 						isEdited={props.isEdited}
 						hasError={props.hasError}
-						isReadReceiptEnabled={props.isReadReceiptEnabled}
+						isReadReceiptEnabled={true}
 						unread={props.unread}
 						pinned={props.pinned}
 						isTranslated={props.isTranslated}
 					/>
 				) : null}
+				<View>
+					<MessageInner {...props} />
+
+					{/* デバック用 */}
+					{<Text>{JSON.stringify(props)}</Text>}
+					<Text>{"デバック用test"}</Text>
+
+				</View>
+
 			</View>
 		</View>
 	);

@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import sharedStyles from '../../views/Styles';
 import { isTablet } from '../../lib/methods/helpers';
+import { red } from 'react-native-reanimated/lib/typescript/reanimated2/Colors';
 
 export default StyleSheet.create({
 	root: {
@@ -39,7 +40,7 @@ export default StyleSheet.create({
 		marginTop: 8
 	},
 	reactionButton: {
-		marginRight: 8,
+		marginRight: 50,
 		marginBottom: 8,
 		borderRadius: 4
 	},

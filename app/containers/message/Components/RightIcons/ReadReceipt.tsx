@@ -16,6 +16,8 @@ const ReadReceipt = React.memo(({ isReadReceiptEnabled, unread }: { isReadReceip
 			/>
 		);
 	}
+	console.log('isReadReceiptEnabled:'+ isReadReceiptEnabled);
+	console.log('unread:'+ unread);
 	return null;
 });
 ReadReceipt.displayName = 'MessageReadReceipt';
