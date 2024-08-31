@@ -123,15 +123,6 @@ const Message = React.memo((props: IMessage) => {
 						isTranslated={props.isTranslated}
 					/>
 				) : null}
-				<View>
-					<MessageInner {...props} />
-
-					{/* デバック用 */}
-					{<Text>{JSON.stringify(props)}</Text>}
-					<Text>{"デバック用test"}</Text>
-
-				</View>
-
 			</View>
 		</View>
 	);
