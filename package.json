@@ -167,7 +167,7 @@
 		"@react-native/metro-config": "0.73.5",
 		"@react-native/typescript-config": "0.73.1",
 		"@rocket.chat/eslint-config": "^0.4.0",
-		"@storybook/react": "^7.6.10",
+		"@storybook/react": "^8.1.11",
 		"@storybook/react-native": "^7.6.17",
 		"@testing-library/react-hooks": "^8.0.1",
 		"@testing-library/react-native": "^12.4.3",
