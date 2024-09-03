@@ -16,71 +16,88 @@ export default StyleSheet.create({
 	contentContainer: {
 		flex: 1
 	},
-	// messageContent: {
-	// 	flex: 1,
-	// 	marginLeft: 46
-	// },
+	// ライトモード
 	messageContentWithHeaderMe: {
 		width:'auto',
 		marginTop: 5,
 		marginBottom: 10,
-		marginRight: 30,
-		marginLeft: 'auto',
-		borderRadius: 5, // 角に丸みをつける
-		backgroundColor: 'aqua',//背景色	
-		borderWidth: 1,// 枠線	
-		padding:5
+		marginRight: 10,
+		marginLeft: 80,
+		borderRadius: 20, // 角に丸みをつける
+		backgroundColor: '#00FFFF',//背景色
+		padding:10,
 	},
 	messageContentWithHeaderOther: {
 		width:'auto',
 		marginTop: 5,
 		marginBottom: 10,
-		marginRight: 'auto',
-		marginLeft: 30,
-		borderRadius: 5, // 角に丸みをつける
-		backgroundColor: '#EEEEEE',//背景色	
-		borderWidth: 1,// 枠線
-		padding:5
+		marginRight: 80,
+		marginLeft: 10,
+		borderRadius: 20, // 角に丸みをつける
+		backgroundColor: '#EEEEEE',//背景色
+		padding:10,
 	},
-	hatsugenShaMe:{
-		marginRight: 30,
+	// ダークモード
+	messageContentWithHeaderMeDark: {
+		width:'auto',
+		marginTop: 5,
+		marginBottom: 10,
+		marginRight: 10,
+		marginLeft: 80,
+		borderRadius: 20, // 角に丸みをつける
+		backgroundColor: '#3366FF',//背景色
+		padding:10,
+	},
+	messageContentWithHeaderOtherDark: {
+		width:'auto',
+		marginTop: 5,
+		marginBottom: 10,
+		marginRight: 80,
+		marginLeft: 10,
+		borderRadius: 20, // 角に丸みをつける
+		backgroundColor: '#808080',//背景色
+		padding:10,
+	},
+	// 添付画像のみ
+	messageContentWithHeaderMeImageOnly: {
+		width:'auto',
+		marginTop: 5,
+		marginBottom: 10,
+		marginRight: 10,
+		marginLeft: 80,
+		borderRadius: 20, // 角に丸みをつける
+		padding:10,
+	},
+	messageContentWithHeaderOtherImageOnly: {
+		width:'auto',
+		marginTop: 5,
+		marginBottom: 10,
+		marginRight: 80,
+		marginLeft: 10,
+		borderRadius: 20, // 角に丸みをつける
+		padding:10,
+	},
+	tokoshaMe:{
+		marginRight: 10,
 		marginLeft: 'auto',
 		
 	},
-	hatsugenShaOther:{
+	tokoshaOther:{
 		marginRight: 'auto',
-		marginLeft: 30,
+		marginLeft: 10,
+		flexDirection: 'row'
 	},
-
-
-
-	// 吹き出し
-	leftArrow: {
-		position: 'absolute',
-		backgroundColor: '#dedede',
-		width: 20,
-		height: 20,
-		left: -10,
-		bottom: -50,
-		borderBottomRightRadius: 16,
-	},
-	leftArrowOverlap: {
-		position: 'absolute',
-		backgroundColor: '#fff',
-		width: 26,
-		height: 20,
-		left: -26,
-		bottom: 0,
-		borderBottomRightRadius: 10,
-	},
-
-	
-
-	
 	messageContentWithError: {
 		marginLeft: 0
 	},
-	flex: {
+	flexMe: {
+		flex: 1, // 子要素の範囲
+		alignItems: 'flex-end', //子要素を右寄　幅自動調整
+		flexDirection: 'column'
+	},
+	flexOther: {
+		flex: 1,  // 子要素の範囲
+		alignItems: 'flex-start', //子要素を左寄　幅自動調整
 		flexDirection: 'column'
 	},
 	temp: { opacity: 0.3 },

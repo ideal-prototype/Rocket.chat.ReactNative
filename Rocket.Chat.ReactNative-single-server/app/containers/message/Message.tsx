@@ -21,6 +21,7 @@ import { IMessage, IMessageInner, IMessageTouchable } from './interfaces';
 import { useTheme } from '../../theme';
 import RightIcons from './Components/RightIcons';
 import moment from 'moment';
+import { IAttachment, TGetCustomEmoji } from '../../definitions';
 
 const MessageInner = React.memo((props: IMessageInner) => {
 	if (props.isPreview) {
@@ -89,43 +90,52 @@ const Message = React.memo((props: IMessage) => {
 	const itsMe = props.author?._id === user.id;
 	const time = moment(props.ts).format(props.timeFormat);
 	
-	// 初期化（自分以外をデフォルトとする。）
-	var style_messageContentWithHeader;
-	
-	if (itsMe){
-		style_messageContentWithHeader = styles.messageContentWithHeaderMe;
-	} else {
-		style_messageContentWithHeader = styles.messageContentWithHeaderOther;
-	}
-
-	// 吹き出しのライト/ダークモード対応	
-	if ('light' === theme){
-		// style_messageContentWithHeader.backgroundColor = 'aqua';
-	} else {
+	//　添付画像のみ投稿
+	var isImageOnly = false;
+	// 添付有　かつ　メッセージ無
+	if (props.attachments && props.attachments.length > 0 && !props.msg){
+		
+		props.attachments.map((file: IAttachment, index: number) => {
+			
+			if (file && file.image_url) {
+				isImageOnly = true;
+			}	
+		});
 
 	}
 
-
-	//　添付画の有無
-	var isAttached = false;
-	if (props.attachments && props.attachments.length > 0){
-		isAttached = true;	
-	}
+	// ダークモード
+	var isDark = false;
+	if ('light' !== theme){
+		isDark = true;
+	} 
 
 	if (props.isThreadReply || props.isThreadSequential || props.isInfo || props.isIgnored) {
 		const thread = props.isThreadReply ? <RepliedThread {...props} /> : null;
 		return (
 			<View style={[styles.container, props.style]}>
 				{thread}
-				<View style={styles.flex}>
-				
+				<View style={itsMe? styles.flexMe : styles.flexOther}>
+
 				{itsMe ? 
 					(null) 
 				:
 					<MessageAvatar small {...props} />
 				}
 
-					<View style={style_messageContentWithHeader}>
+					{/* スタイルを6種類で分岐させる */}
+					<View style={
+						isImageOnly ?
+							itsMe ?
+								styles.messageContentWithHeaderMeImageOnly
+							:
+								styles.messageContentWithHeaderOtherImageOnly
+						:
+							itsMe ?
+								isDark ? styles.messageContentWithHeaderMeDark : styles.messageContentWithHeaderMe
+							:
+								isDark ? styles.messageContentWithHeaderOtherDark : styles.messageContentWithHeaderOther
+					}>
 						<Content {...props} />
 						{props.isInfo && props.type === 'message_pinned' ? (
 							<View pointerEvents='none'>
@@ -140,48 +150,50 @@ const Message = React.memo((props: IMessage) => {
 
 	return (
 		<View style={[styles.container, props.style]}>
-			<View style={styles.flex}>
+
+			{/* 投稿者による左右寄せ */}
+			<View style={itsMe? styles.flexMe : styles.flexOther}>
 			
-			
-			{/* アイコン */}
+			{/* 投稿者 */}
 			{itsMe ? 
-				(null) 
-			: 
-				<MessageAvatar {...props} />
-			}
-			
-			{/* 発言者 */}
-			{itsMe ? 
-				<View style={styles.hatsugenShaMe}>
+				<View style={styles.tokoshaMe}>
 					<Text style={[styles.time, { color: colors.fontSecondaryInfo }]}>{time}</Text>
 				</View>
 			: 
-				<View style={styles.hatsugenShaOther}>
+				<View style={styles.tokoshaOther}>
+					<MessageAvatar {...props} />
+					<Text>{"  "}</Text>
 					<User {...props} />
 				</View>	
 			}
 
-				<View style={style_messageContentWithHeader}>
+				{/* スタイルを6種類で分岐させる */}
+				<View style={
+					isImageOnly ?
+						itsMe ?
+							styles.messageContentWithHeaderMeImageOnly
+						:
+							styles.messageContentWithHeaderOtherImageOnly
+					:
+						itsMe ?
+							isDark ? styles.messageContentWithHeaderMeDark : styles.messageContentWithHeaderMe
+						:
+							isDark ? styles.messageContentWithHeaderOtherDark : styles.messageContentWithHeaderOther
+				}>
+					
 					<MessageInner {...props} />
 
 					{/* 添付画像用の幅 */}
-					{isAttached ? 
+					{isImageOnly ? 
 						<Text style={{opacity: 0, height: 0}}>{"　　　　　　　　　　　　　　　　　　　　　　　　"}</Text>
 					: 
 						(null) 
 					}
 
-					
-					
 					{/* デバック用 */}
 					{/* <Text>{JSON.stringify(props.msg)}</Text> */}
-					<Text>{"デバック用"}</Text>
-					<Text>{JSON.stringify(theme)}</Text>
-					
-					
-
-					
-
+					{/* <Text>{"デバック用"}</Text> */}
+					{/* <Text>{JSON.stringify(itsMe)}</Text> */}
 
 				</View>
 				{!props.isHeader ? (
