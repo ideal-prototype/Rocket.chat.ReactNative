@@ -8,12 +8,15 @@ export const HeaderCallButton = ({ rid, disabled }: { rid: string; disabled: boo
 
 	if (callEnabled)
 		return (
-			<HeaderButton.Item
-				disabled={disabledTooltip || disabled}
-				iconName='phone'
-				onPress={showInitCallActionSheet}
-				testID='room-view-header-call'
-			/>
+			null
+			// 各チャットルームのヘッダー部分の電話アイコンを削除する。
+
+			// <HeaderButton.Item
+			// 	disabled={disabledTooltip || disabled}
+			// 	iconName='phone'
+			// 	onPress={showInitCallActionSheet}
+			// 	testID='room-view-header-call'
+			// />
 		);
 	return null;
 };

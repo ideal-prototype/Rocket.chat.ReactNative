@@ -73,8 +73,8 @@ const MessageInner = React.memo((props: IMessageInner) => {
 		<>
 			{/* <User {...props} /> */}
 			<>
-				<Content {...props} />
 				<Attachments {...props} />
+				<Content {...props} />
 			</>
 			<Urls {...props} />
 			<Thread {...props} />
@@ -122,7 +122,7 @@ const Message = React.memo((props: IMessage) => {
 				<View style={itsMe? styles.flexMe : styles.flexOther}>
 
 				{itsMe ? 
-					(null) 
+					<Text style={[styles.time, { color: colors.fontSecondaryInfo }]}>{time}</Text>
 				:
 					<MessageAvatar small {...props} />
 				}
@@ -198,7 +198,7 @@ const Message = React.memo((props: IMessage) => {
 					{/* デバック用 */}
 					{/* <Text>{JSON.stringify(props.msg)}</Text> */}
 					{/* <Text>{"デバック用"}</Text> */}
-					{/* <Text>{JSON.stringify(time)}</Text> */}
+					{/* <Text>{JSON.stringify(props.type)}</Text> */}
 
 
 				</View>
