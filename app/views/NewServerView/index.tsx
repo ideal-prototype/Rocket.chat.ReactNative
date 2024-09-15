@@ -343,7 +343,7 @@ class NewServerView extends React.Component<INewServerViewProps, INewServerViewS
 								marginBottom: 8
 							}
 						]}>
-						Rocket.Chat
+						CHUROS
 					</Text>
 					<Text
 						style={[
@@ -354,7 +354,7 @@ class NewServerView extends React.Component<INewServerViewProps, INewServerViewS
 								marginBottom: 30
 							}
 						]}>
-						{I18n.t('Onboarding_subtitle')}
+					  {/* I18n.t('Onboarding_subtitle') */}
 					</Text>
 					<ServerInput
 						text={text}
