@@ -22,12 +22,14 @@ import { useTheme } from '../../theme';
 import RightIcons from './Components/RightIcons';
 import i18n from '../../i18n';
 import { getInfoMessage } from './utils';
+import moment from 'moment';
+import { IAttachment, TGetCustomEmoji } from '../../definitions';
 
 const MessageInner = React.memo((props: IMessageInner) => {
 	if (props.isPreview) {
 		return (
 			<>
-				<User {...props} />
+				{/* <User {...props} /> */}
 				<>
 					<Content {...props} />
 					<Attachments {...props} />
@@ -40,7 +42,7 @@ const MessageInner = React.memo((props: IMessageInner) => {
 	if (props.type === 'discussion-created') {
 		return (
 			<>
-				<User {...props} />
+				{/* <User {...props} /> */}
 				<Discussion {...props} />
 			</>
 		);
@@ -49,7 +51,7 @@ const MessageInner = React.memo((props: IMessageInner) => {
 	if (props.type === 'jitsi_call_started') {
 		return (
 			<>
-				<User {...props} />
+				{/* <User {...props} /> */}
 				<Content {...props} isInfo />
 				<CallButton {...props} />
 			</>
@@ -59,7 +61,7 @@ const MessageInner = React.memo((props: IMessageInner) => {
 	if (props.blocks && props.blocks.length) {
 		return (
 			<>
-				<User {...props} />
+				{/* <User {...props} /> */}
 				<Blocks {...props} />
 				<Thread {...props} />
 				<Reactions {...props} />
@@ -69,10 +71,10 @@ const MessageInner = React.memo((props: IMessageInner) => {
 
 	return (
 		<>
-			<User {...props} />
+			{/* <User {...props} /> */}
 			<>
-				<Content {...props} />
 				<Attachments {...props} />
+				<Content {...props} />
 			</>
 			<Urls {...props} />
 			<Thread {...props} />
@@ -84,14 +86,60 @@ const MessageInner = React.memo((props: IMessageInner) => {
 MessageInner.displayName = 'MessageInner';
 
 const Message = React.memo((props: IMessage) => {
+	
+	const { colors, theme } = useTheme();
+	const { user } = useContext(MessageContext);
+	const itsMe = props.author?._id === user.id;
+	const time = moment(props.ts).format(props.timeFormat);
+
+	//　添付画像のみ投稿
+	var isImageOnly = false;
+	// 添付有　かつ　メッセージ無
+	if (props.attachments && props.attachments.length > 0 && !props.msg){
+		
+		props.attachments.map((file: IAttachment, index: number) => {
+			
+			if (file && file.image_url) {
+				isImageOnly = true;
+			}	
+		});
+
+	}
+
+	// ダークモード
+	var isDark = false;
+	if ('light' !== theme){
+		isDark = true;
+	} 
+
+
+
 	if (props.isThreadReply || props.isThreadSequential || props.isInfo || props.isIgnored) {
 		const thread = props.isThreadReply ? <RepliedThread {...props} /> : null;
 		return (
 			<View style={[styles.container, props.style]}>
 				{thread}
-				<View style={styles.flex}>
+				<View style={itsMe? styles.flexMe : styles.flexOther}>
+
+				{itsMe ? 
+					<Text style={[styles.time, { color: colors.fontSecondaryInfo }]}>{time}</Text>
+				:
 					<MessageAvatar small {...props} />
-					<View style={[styles.messageContent, props.isHeader && styles.messageContentWithHeader]}>
+				}
+
+					{/* スタイルを分岐させる */}
+					<View style={
+						isImageOnly ?
+							itsMe ?
+								styles.messageContentWithHeaderMeImageOnly
+							:
+								styles.messageContentWithHeaderOtherImageOnly
+						:
+							itsMe ?
+								isDark ? styles.messageContentWithHeaderMeDark : styles.messageContentWithHeaderMe
+							:
+								isDark ? styles.messageContentWithHeaderOtherDark : styles.messageContentWithHeaderOther
+					}>
 						<Content {...props} />
 						{props.isInfo && props.type === 'message_pinned' ? (
 							<View pointerEvents='none'>
@@ -106,10 +154,53 @@ const Message = React.memo((props: IMessage) => {
 
 	return (
 		<View style={[styles.container, props.style]}>
-			<View style={styles.flex}>
-				<MessageAvatar {...props} />
-				<View style={[styles.messageContent, props.isHeader && styles.messageContentWithHeader]}>
+
+			{/* 投稿者による左右寄せ */}
+			<View style={itsMe? styles.flexMe : styles.flexOther}>
+			
+			{/* 投稿者 */}
+			{itsMe ? 
+				<View style={styles.tokoshaMe}>
+					<Text style={[styles.time, { color: colors.fontSecondaryInfo }]}>{time}</Text>
+				</View>
+			: 
+				<View style={styles.tokoshaOther}>
+					<MessageAvatar {...props} />
+					<Text>{"  "}</Text>
+					<User {...props} />
+				</View>	
+			}
+
+				{/* スタイルを6分岐させる */}
+				<View style={
+					isImageOnly ?
+						itsMe ?
+							styles.messageContentWithHeaderMeImageOnly
+						:
+							styles.messageContentWithHeaderOtherImageOnly
+					:
+						itsMe ?
+							isDark ? styles.messageContentWithHeaderMeDark : styles.messageContentWithHeaderMe
+						:
+							isDark ? styles.messageContentWithHeaderOtherDark : styles.messageContentWithHeaderOther
+				}>
+					
 					<MessageInner {...props} />
+
+					{/* 添付画像用の幅 */}
+					{isImageOnly ? 
+						<Text style={{opacity: 0, height: 0}}>{"　　　　　　　　　　　　　　　　　　　　　　　　"}</Text>
+					: 
+						(null) 
+					}
+
+
+					{/* デバック用 */}
+					{/* <Text>{JSON.stringify(props.msg)}</Text> */}
+					{/* <Text>{"デバック用"}</Text> */}
+					{/* <Text>{JSON.stringify(props.type)}</Text> */}
+
+
 				</View>
 				{!props.isHeader ? (
 					<RightIcons

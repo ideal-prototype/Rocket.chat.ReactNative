@@ -17,18 +17,89 @@ export default StyleSheet.create({
 	contentContainer: {
 		flex: 1
 	},
-	messageContent: {
-		flex: 1,
-		marginLeft: 46
+	// ライトモード
+	messageContentWithHeaderMe: {
+		width:'auto',
+		marginTop: 5,
+		marginBottom: 10,
+		marginRight: 10,
+		marginLeft: 80,
+		borderRadius: 20, // 角に丸みをつける
+		backgroundColor: '#00FFFF',//背景色
+		padding:10,
 	},
-	messageContentWithHeader: {
-		marginLeft: 10
+	messageContentWithHeaderOther: {
+		width:'auto',
+		marginTop: 5,
+		marginBottom: 10,
+		marginRight: 80,
+		marginLeft: 10,
+		borderRadius: 20, // 角に丸みをつける
+		backgroundColor: '#EEEEEE',//背景色
+		padding:10,
+	},
+	// ダークモード
+	messageContentWithHeaderMeDark: {
+		width:'auto',
+		marginTop: 5,
+		marginBottom: 10,
+		marginRight: 10,
+		marginLeft: 80,
+		borderRadius: 20, // 角に丸みをつける
+		backgroundColor: '#3366FF',//背景色
+		padding:10,
+	},
+	messageContentWithHeaderOtherDark: {
+		width:'auto',
+		marginTop: 5,
+		marginBottom: 10,
+		marginRight: 80,
+		marginLeft: 10,
+		borderRadius: 20, // 角に丸みをつける
+		backgroundColor: '#808080',//背景色
+		padding:10,
+	},
+	// 添付画像のみ
+	messageContentWithHeaderMeImageOnly: {
+		width:'auto',
+		marginTop: 5,
+		marginBottom: 10,
+		marginRight: 10,
+		marginLeft: 80,
+		borderRadius: 20, // 角に丸みをつける
+		padding:10,
+	},
+	messageContentWithHeaderOtherImageOnly: {
+		width:'auto',
+		marginTop: 5,
+		marginBottom: 10,
+		marginRight: 80,
+		marginLeft: 10,
+		borderRadius: 20, // 角に丸みをつける
+		padding:10,
+	},	
+	tokoshaMe:{
+		marginRight: 10,
+		marginLeft: 'auto',
+		
+	},
+	tokoshaOther:{
+		marginRight: 'auto',
+		marginLeft: 10,
+		flexDirection: 'row'
 	},
 	messageContentWithError: {
 		marginLeft: 0
 	},
-	flex: {
-		flexDirection: 'row'
+	flexMe: {
+		flex: 1, // 子要素の範囲
+		alignItems: 'flex-end', //子要素を右寄　幅自動調整
+		flexDirection: 'column'
+	},
+	flexOther: {
+		flex: 1,  // 子要素の範囲
+		alignItems: 'flex-start', //子要素を左寄　幅自動調整
+		flexDirection: 'column'
 	},
 	temp: { opacity: 0.3 },
 	marginTop: {
