@@ -1,5 +1,5 @@
-import React, { useContext, useMemo } from 'react';
-import { View,Text } from 'react-native';
+import React, { useContext, useMemo, useState, useEffect } from 'react';
+import { View,Text,ViewStyle,Image, StyleSheet } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 
 import MessageContext from './Context';
@@ -24,6 +24,9 @@ import i18n from '../../i18n';
 import { getInfoMessage } from './utils';
 import moment from 'moment';
 import { IAttachment, TGetCustomEmoji } from '../../definitions';
+import { WidthAwareContext } from './Components/WidthAwareView';
+import { useMediaAutoDownload } from './hooks/useMediaAutoDownload';
+import { IMessageImage } from './Components/Attachments/Image/definitions';
 
 const MessageInner = React.memo((props: IMessageInner) => {
 	if (props.isPreview) {
@@ -94,14 +97,14 @@ const Message = React.memo((props: IMessage) => {
 
 	//　添付画像のみ投稿
 	var isImageOnly = false;
-	// 添付有　かつ　メッセージ無
-	if (props.attachments && props.attachments.length > 0 && !props.msg){
+	if (props.attachments && props.attachments.length > 0){
 		
 		props.attachments.map((file: IAttachment, index: number) => {
 			
-			if (file && file.image_url) {
+			// 添付有　かつ　添付画像についたメッセージ無
+			if (file && file.image_url && !file.description) {
 				isImageOnly = true;
-			}	
+			}		
 		});
 
 	}
@@ -184,21 +187,28 @@ const Message = React.memo((props: IMessage) => {
 						:
 							isDark ? styles.messageContentWithHeaderOtherDark : styles.messageContentWithHeaderOther
 				}>
-					
+
 					<MessageInner {...props} />
 
-					{/* 添付画像用の幅 */}
-					{isImageOnly ? 
-						<Text style={{opacity: 0, height: 0}}>{"　　　　　　　　　　　　　　　　　　　　　　　　"}</Text>
-					: 
-						(null) 
-					}
-
-
+					
 					{/* デバック用 */}
 					{/* <Text>{JSON.stringify(props.msg)}</Text> */}
 					{/* <Text>{"デバック用"}</Text> */}
-					{/* <Text>{JSON.stringify(props.type)}</Text> */}
+					{/* <Text>{JSON.stringify(msg)}</Text> */}
+					{/* <Text>{JSON.stringify(width)}</Text>
+					<Text>{JSON.stringify(height)}</Text>
+					<Text>{"★★★★★★★★"}</Text>
+					<Text>{JSON.stringify(containerStyle)}</Text>
+					<Text>{JSON.stringify(imageDimensions.width)}</Text>
+					<Text>{JSON.stringify(imageDimensions.height)}</Text> */}
+					
+					{/* <Text>{"★★★★★★★★"}</Text> */}
+					{/* <Text>{JSON.stringify(test)}</Text> */}
+					{/* <Text>{JSON.stringify(imageWidth)}</Text> */}
+					{/* <Text>{JSON.stringify("★★")}</Text>
+					<Text>{JSON.stringify(props.style)}</Text> */}
+					{/* <Text>{JSON.stringify("★★")}</Text> */}
+
 
 
 				</View>

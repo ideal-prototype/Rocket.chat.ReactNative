@@ -31,6 +31,9 @@ export const MessageImage = React.memo(({ uri, status, encrypted = false }: IMes
 	};
 
 	const containerStyle: ViewStyle = {
+		// UI変更により画像の大きさを縮小表示できなくなったので、縦横を指定する。
+		width:width,
+		height:height,
 		alignItems: 'center',
 		justifyContent: 'center',
 		...(imageDimensions.width <= 64 && { width: 64 }),
