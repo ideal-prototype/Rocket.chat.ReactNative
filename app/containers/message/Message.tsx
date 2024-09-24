@@ -192,23 +192,8 @@ const Message = React.memo((props: IMessage) => {
 
 					
 					{/* デバック用 */}
-					{/* <Text>{JSON.stringify(props.msg)}</Text> */}
-					{/* <Text>{"デバック用"}</Text> */}
-					{/* <Text>{JSON.stringify(msg)}</Text> */}
-					{/* <Text>{JSON.stringify(width)}</Text>
-					<Text>{JSON.stringify(height)}</Text>
-					<Text>{"★★★★★★★★"}</Text>
-					<Text>{JSON.stringify(containerStyle)}</Text>
-					<Text>{JSON.stringify(imageDimensions.width)}</Text>
-					<Text>{JSON.stringify(imageDimensions.height)}</Text> */}
-					
-					{/* <Text>{"★★★★★★★★"}</Text> */}
-					{/* <Text>{JSON.stringify(test)}</Text> */}
-					{/* <Text>{JSON.stringify(imageWidth)}</Text> */}
 					{/* <Text>{JSON.stringify("★★")}</Text>
 					<Text>{JSON.stringify(props.style)}</Text> */}
-					{/* <Text>{JSON.stringify("★★")}</Text> */}
-
 
 
 				</View>
