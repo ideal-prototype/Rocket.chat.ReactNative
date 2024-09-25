@@ -27,6 +27,10 @@ export default StyleSheet.create({
 		borderRadius: 20, // 角に丸みをつける
 		backgroundColor: '#00FFFF',//背景色
 		padding:10,
+
+		// 引用付き投稿の場合<Attachments>　<Content>となり、子要素でレイアウトが崩れないようにする。
+		flex: 1, // 子要素の範囲
+		alignItems: 'flex-end', //子要素を右寄　幅自動調整
 	},
 	messageContentWithHeaderOther: {
 		width:'auto',
@@ -37,6 +41,10 @@ export default StyleSheet.create({
 		borderRadius: 20, // 角に丸みをつける
 		backgroundColor: '#EEEEEE',//背景色
 		padding:10,
+
+		// 引用付き投稿の場合<Attachments>　<Content>となり、子要素でレイアウトが崩れないようにする。
+		flex: 1, // 子要素の範囲
+		alignItems: 'flex-start', //子要素を右寄　幅自動調整
 	},
 	// ダークモード
 	messageContentWithHeaderMeDark: {
@@ -48,6 +56,11 @@ export default StyleSheet.create({
 		borderRadius: 20, // 角に丸みをつける
 		backgroundColor: '#3366FF',//背景色
 		padding:10,
+
+		// 引用付き投稿の場合<Attachments>　<Content>となり、子要素でレイアウトが崩れないようにする。
+		flex: 1, // 子要素の範囲
+		alignItems: 'flex-end', //子要素を右寄　幅自動調整
+		
 	},
 	messageContentWithHeaderOtherDark: {
 		width:'auto',
@@ -58,10 +71,14 @@ export default StyleSheet.create({
 		borderRadius: 20, // 角に丸みをつける
 		backgroundColor: '#808080',//背景色
 		padding:10,
+
+		// 引用付き投稿の場合<Attachments>　<Content>となり、子要素でレイアウトが崩れないようにする。
+		flex: 1, // 子要素の範囲
+		alignItems: 'flex-start', //子要素を右寄　幅自動調整
+		
 	},
 	// 添付画像のみ
 	messageContentWithHeaderMeImageOnly: {
-		width:'auto',
 		marginTop: 5,
 		marginBottom: 10,
 		marginRight: 10,
@@ -70,7 +87,6 @@ export default StyleSheet.create({
 		padding:10,
 	},
 	messageContentWithHeaderOtherImageOnly: {
-		width:'auto',
 		marginTop: 5,
 		marginBottom: 10,
 		marginRight: 80,
@@ -111,9 +127,7 @@ export default StyleSheet.create({
 		marginTop: 8
 	},
 	reactionButton: {
-		marginRight: 50,
-		marginBottom: 8,
-		borderRadius: 4
+		borderRadius: 20
 	},
 	reactionContainer: {
 		flexDirection: 'row',

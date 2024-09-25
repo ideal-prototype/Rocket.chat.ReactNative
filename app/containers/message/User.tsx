@@ -82,7 +82,7 @@ const User = React.memo(
 		const { user } = useContext(MessageContext);
 		const { colors } = useTheme();
 
-		if (isHeader) {
+		// if (isHeader) {
 			const username = (useRealName && author?.name) || author?.username;
 			const aliasUsername = alias ? <Text style={[styles.alias, { color: colors.fontSecondaryInfo }]}> @{username}</Text> : null;
 			const time = moment(ts).format(timeFormat);
@@ -130,7 +130,7 @@ const User = React.memo(
 					/>
 				</View>
 			);
-		}
+		// }
 		return null;
 	}
 );

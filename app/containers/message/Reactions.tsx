@@ -88,7 +88,8 @@ const Reactions = React.memo(({ reactions, getCustomEmoji }: IMessageReactions) 
 			{reactions.map(reaction => (
 				<Reaction key={reaction.emoji} reaction={reaction} getCustomEmoji={getCustomEmoji} theme={theme} />
 			))}
-			<AddReaction theme={theme} />
+			{/* 発言内容が短い場合、レイアウトが崩れるため削除する。 */}
+			{/* <AddReaction theme={theme} /> */}
 		</View>
 	);
 });

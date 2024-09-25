@@ -42,7 +42,8 @@ const RightIcons = ({
 		<Edited testID={`${msg}-edited`} isEdited={isEdited} />
 		<MessageError hasError={hasError} />
 		<Translated isTranslated={isTranslated} />
-		<ReadReceipt isReadReceiptEnabled={isReadReceiptEnabled} unread={unread} />
+		{/* 既読機能と処理が同じであるため、メッセージの既読の「✓」を削除する。 */}
+		{/* <ReadReceipt isReadReceiptEnabled={isReadReceiptEnabled} unread={unread} /> */}
 	</View>
 );
 
