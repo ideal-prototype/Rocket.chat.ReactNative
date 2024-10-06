@@ -82,56 +82,53 @@ const User = React.memo(
 		const { user } = useContext(MessageContext);
 		const { colors } = useTheme();
 
-		// if (isHeader) {
-			const username = (useRealName && author?.name) || author?.username;
-			const aliasUsername = alias ? <Text style={[styles.alias, { color: colors.fontSecondaryInfo }]}> @{username}</Text> : null;
-			const time = moment(ts).format(timeFormat);
-			const itsMe = author?._id === user.id;
+		const username = (useRealName && author?.name) || author?.username;
+		const aliasUsername = alias ? <Text style={[styles.alias, { color: colors.fontSecondaryInfo }]}> @{username}</Text> : null;
+		const time = moment(ts).format(timeFormat);
+		const itsMe = author?._id === user.id;
 
-			const onUserPress = () => {
-				navToRoomInfo?.({
-					t: SubscriptionType.DIRECT,
-					rid: author?._id || '',
-					itsMe
-				});
-			};
+		const onUserPress = () => {
+			navToRoomInfo?.({
+				t: SubscriptionType.DIRECT,
+				rid: author?._id || '',
+				itsMe
+			});
+		};
 
-			const textContent = (
-				<>
-					{alias || username}
-					{aliasUsername}
-				</>
+		const textContent = (
+			<>
+				{alias || username}
+				{aliasUsername}
+			</>
+		);
+
+		if (messageHaveAuthorName(type as MessageTypesValues)) {
+			return (
+				<Text style={[styles.usernameInfoMessage, { color: colors.fontTitlesLabels }]} onPress={onUserPress}>
+					{textContent}
+				</Text>
 			);
+		}
 
-			if (messageHaveAuthorName(type as MessageTypesValues)) {
-				return (
-					<Text style={[styles.usernameInfoMessage, { color: colors.fontTitlesLabels }]} onPress={onUserPress}>
+		return (
+			<View style={styles.container}>
+				<TouchableOpacity testID={`username-header-${username}`} style={styles.titleContainer} onPress={onUserPress}>
+					<Text style={[styles.username, { color: colors.fontTitlesLabels }]} numberOfLines={1}>
 						{textContent}
 					</Text>
-				);
-			}
-
-			return (
-				<View style={styles.container}>
-					<TouchableOpacity testID={`username-header-${username}`} style={styles.titleContainer} onPress={onUserPress}>
-						<Text style={[styles.username, { color: colors.fontTitlesLabels }]} numberOfLines={1}>
-							{textContent}
-						</Text>
-						<Text style={[messageStyles.time, { color: colors.fontSecondaryInfo }]}>{time}</Text>
-					</TouchableOpacity>
-					<RightIcons
-						type={type}
-						isEdited={isEdited}
-						hasError={hasError}
-						isReadReceiptEnabled={true}
-						unread={props.unread}
-						pinned={props.pinned}
-						isTranslated={isTranslated}
-					/>
-				</View>
-			);
-		// }
-		return null;
+					<Text style={[messageStyles.time, { color: colors.fontSecondaryInfo }]}>{time}</Text>
+				</TouchableOpacity>
+				<RightIcons
+					type={type}
+					isEdited={isEdited}
+					hasError={hasError}
+					isReadReceiptEnabled={true}
+					unread={props.unread}
+					pinned={props.pinned}
+					isTranslated={isTranslated}
+				/>
+			</View>
+		);
 	}
 );
 

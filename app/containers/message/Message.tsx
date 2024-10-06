@@ -104,7 +104,7 @@ const Message = React.memo((props: IMessage) => {
 			// 添付有　かつ　添付画像についたメッセージ無
 			if (file && file.image_url && !file.description) {
 				isImageOnly = true;
-			}		
+			}
 		});
 
 	}
